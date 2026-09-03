@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MeuCelular.com — Loja de Celulares</title>
+<style>
+:root{--yellow:#ffc400;--yellow2:#f3b800;--bg:#050505;--card:#121212;--line:#292929;--muted:#aaa;--green:#25d366}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none} button,input,select{font:inherit}
+.top{background:linear-gradient(90deg,#ffcf00,#f2ad00);color:#111;display:flex;justify-content:space-around;padding:9px 4%;font-size:13px;font-weight:700}
+.header{background:#090909;border-bottom:1px solid #222;display:flex;align-items:center;gap:28px;padding:14px 4%}
+.logo{width:210px;height:62px;object-fit:contain;background:#000}
+.search{flex:1;display:flex;max-width:680px} .search input{flex:1;padding:14px;border:0;border-radius:8px 0 0 8px} .search button{width:58px;border:0;background:var(--yellow);border-radius:0 8px 8px 0;font-size:20px}
+.header-actions{display:flex;gap:22px;align-items:center;font-size:14px} .cartBtn{cursor:pointer}
+.nav{display:flex;gap:30px;padding:13px 4%;background:#0d0d0d;border-bottom:1px solid #222;font-size:14px} .nav a:first-child{color:var(--yellow)}
+.container{max-width:1400px;margin:auto;padding:26px 4%}
+.hero{background:linear-gradient(110deg,#151515,#050505);border:1px solid #242424;border-radius:14px;padding:28px;margin-bottom:25px;display:flex;justify-content:space-between;align-items:center} .hero h1{font-size:36px;margin:0 0 8px} .hero strong{color:var(--yellow)} .hero p{color:#ccc}
+.layout{display:grid;grid-template-columns:230px 1fr;gap:25px} .filters{background:#111;border:1px solid #252525;border-radius:12px;padding:18px;height:max-content;position:sticky;top:12px} .filters h3{color:var(--yellow);font-size:15px} .filters label{display:block;margin:12px 0;color:#ddd;font-size:14px} .filters input[type=checkbox]{accent-color:var(--yellow)}
+.contentHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px} .contentHead h2{margin:0} .count{color:var(--yellow)} select{background:#111;color:white;border:1px solid #333;padding:10px;border-radius:8px}
+.brands{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px} .brand{background:#151515;border:1px solid #333;color:#ddd;padding:9px 14px;border-radius:999px;cursor:pointer} .brand.active,.brand:hover{background:var(--yellow);color:#111;border-color:var(--yellow)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px} .product{background:#101010;border:1px solid #262626;border-radius:12px;padding:12px;position:relative;display:flex;flex-direction:column} .product:hover{border-color:#555;transform:translateY(-2px);transition:.15s}
+.product img{width:100%;aspect-ratio:1/1;object-fit:contain;background:#080808;border-radius:8px} .brandName{font-size:11px;color:var(--yellow);font-weight:700;margin-top:9px} .product h3{font-size:16px;margin:5px 0} .spec{font-size:12px;color:#bbb;line-height:1.5} .price{color:var(--yellow);font-size:20px;font-weight:800;margin-top:auto;padding-top:10px} .install{font-size:11px;color:#aaa;margin:4px 0 9px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:6px} .buy,.wa{border:0;border-radius:7px;padding:10px 5px;cursor:pointer;font-weight:800;font-size:11px} .buy{background:var(--yellow);color:#111} .wa{background:#0b160e;border:1px solid #1fae52;color:#55e981}
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:30px 0} .benefit{background:#111;border:1px solid #262626;padding:17px;border-radius:10px} .benefit b{color:var(--yellow);display:block;margin-bottom:5px}
+footer{background:#090909;border-top:1px solid #222;padding:35px 4%;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr 1.5fr;gap:25px;color:#bbb;font-size:13px} footer h4{color:white} footer .footLogo{color:var(--yellow);font-size:25px;font-weight:800}
+.cartOverlay{position:fixed;inset:0;background:#000b;display:none;z-index:20} .cartOverlay.open{display:block} .cart{position:absolute;right:0;top:0;height:100%;width:min(440px,100%);background:#0c0c0c;border-left:1px solid #333;padding:20px;overflow:auto} .cart h2{margin-top:0;color:var(--yellow)} .close{float:right;background:none;border:0;color:white;font-size:28px;cursor:pointer} .cartItem{display:grid;grid-template-columns:70px 1fr auto;gap:10px;padding:12px 0;border-bottom:1px solid #292929} .cartItem img{width:70px;height:70px;object-fit:contain;background:#111;border-radius:8px} .qty button{background:#222;color:#fff;border:1px solid #444;width:25px;height:25px} .checkout{width:100%;padding:14px;background:var(--yellow);border:0;border-radius:8px;font-weight:800;cursor:pointer;margin-top:12px}
+.modal{position:fixed;inset:0;background:#000c;display:none;z-index:30;align-items:center;justify-content:center;padding:15px} .modal.open{display:flex} .modalBox{width:min(650px,100%);max-height:92vh;overflow:auto;background:#111;border:1px solid #333;border-radius:14px;padding:24px} .modalBox h2{color:var(--yellow)} .form{display:grid;gap:10px} .form input,.form textarea,.form select{width:100%;padding:12px;background:#090909;color:white;border:1px solid #333;border-radius:7px} .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#222;border:1px solid #444;color:white;padding:12px 18px;border-radius:999px;display:none;z-index:50}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)} .layout{grid-template-columns:190px 1fr} footer{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.top{font-size:10px} .header{flex-wrap:wrap} .logo{width:170px;height:48px} .search{order:3;flex-basis:100%} .nav{overflow:auto;white-space:nowrap} .layout{grid-template-columns:1fr} .filters{position:static} .grid{grid-template-columns:repeat(2,1fr)} .benefits{grid-template-columns:1fr 1fr} footer{grid-template-columns:1fr} .hero h1{font-size:27px}}
+</style>
+</head>
+<body>
+<div class="top"><span>📍 Bragança Paulista - SP</span><span>🚚 Entrega para todo o Brasil</span><span>💳 Até 12x sem juros no cartão</span></div>
+<header class="header">
+  <img class="logo" src="logo.png" alt="MeuCelular.com">
+  <div class="search"><input id="search" placeholder="Buscar produtos..." oninput="render()"><button>⌕</button></div>
+  <div class="header-actions"><span>👤 Entrar<br><b>Minha conta</b></span><span class="cartBtn" onclick="openCart()">🛒 Carrinho <b id="cartCount">0</b></span></div>
+</header>
+<nav class="nav"><a href="#">☰ TODAS AS CATEGORIAS</a><a href="#">Início</a><a href="#">Celulares</a><a href="#">Acessórios</a><a href="#">Ofertas</a><a href="#">Lançamentos</a><a href="#">Avaliações</a><a href="#">Contato</a><a href="https://wa.me/5511989557795" target="_blank">🟢 (11) 98955-7795</a></nav>
+
+<main class="container">
+<section class="hero"><div><h1>Seu novo <strong>celular</strong> está aqui!</h1><p>Catálogo MeuCelular.com • Compra segura • Atendimento pelo WhatsApp</p></div><div style="font-size:58px">📱</div></section>
+<div class="layout">
+<aside class="filters">
+<h3>FILTRAR POR</h3>
+<div><b>MARCA</b>
+<label><input type="radio" name="brand" value="Todos" checked onchange="render()"> Todas as marcas</label>
+<label><input type="radio" name="brand" value="Apple" onchange="render()"> Apple</label><label><input type="radio" name="brand" value="Samsung" onchange="render()"> Samsung</label><label><input type="radio" name="brand" value="Motorola" onchange="render()"> Motorola</label><label><input type="radio" name="brand" value="Xiaomi" onchange="render()"> Xiaomi</label><label><input type="radio" name="brand" value="POCO" onchange="render()"> POCO</label><label><input type="radio" name="brand" value="Google" onchange="render()"> Google</label><label><input type="radio" name="brand" value="OnePlus" onchange="render()"> OnePlus</label><label><input type="radio" name="brand" value="ASUS" onchange="render()"> ASUS</label><label><input type="radio" name="brand" value="Sony" onchange="render()"> Sony</label>
+</div>
+<hr style="border-color:#292929">
+<div><b>FAIXA DE PREÇO</b>
+<label><input type="radio" name="price" value="all" checked onchange="render()"> Todos</label>
+<label><input type="radio" name="price" value="1500" onchange="render()"> Até R$ 1.500</label>
+<label><input type="radio" name="price" value="2500" onchange="render()"> R$ 1.500–2.500</label>
+<label><input type="radio" name="price" value="4000" onchange="render()"> R$ 2.500–4.000</label>
+<label><input type="radio" name="price" value="6000" onchange="render()"> R$ 4.000–6.000</label>
+<label><input type="radio" name="price" value="6001" onchange="render()"> Acima de R$ 6.000</label>
+</div>
+</aside>
+<section>
+<div class="contentHead"><div><h2>Catálogo de celulares</h2><span class="count" id="count"></span></div><select id="sort" onchange="render()"><option value="best">Mais vendidos</option><option value="low">Menor preço</option><option value="high">Maior preço</option><option value="az">A-Z</option></select></div>
+<div class="brands"><span class="brand active" onclick="setBrand('Todos')">Todos</span><span class="brand" onclick="setBrand('ASUS')">ASUS</span><span class="brand" onclick="setBrand('Apple')">Apple</span><span class="brand" onclick="setBrand('Google')">Google</span><span class="brand" onclick="setBrand('Motorola')">Motorola</span><span class="brand" onclick="setBrand('OnePlus')">OnePlus</span><span class="brand" onclick="setBrand('POCO')">POCO</span><span class="brand" onclick="setBrand('Samsung')">Samsung</span><span class="brand" onclick="setBrand('Sony')">Sony</span><span class="brand" onclick="setBrand('Xiaomi')">Xiaomi</span></div>
+<div class="grid" id="grid"></div>
+</section>
+</div>
+<div class="benefits">
+<div class="benefit"><b>🚚 Entrega para todo o Brasil</b>Seguro e rastreamento</div>
+<div class="benefit"><b>💳 Parcela em até 12x</b>Consulte condições</div>
+<div class="benefit"><b>🛡️ Loja 100% segura</b>Compra protegida</div>
+<div class="benefit"><b>🟢 Atendimento rápido</b>WhatsApp da loja</div>
+</div>
+</main>
+
+<div class="cartOverlay" id="cartOverlay" onclick="if(event.target===this)closeCart()"><aside class="cart">
+<button class="close" onclick="closeCart()">×</button><h2>Seu carrinho</h2><div id="cartItems"></div><div id="cartTotal" style="font-size:20px;font-weight:800;margin-top:15px"></div><button class="checkout" onclick="openCheckout()">IR PARA O CHECKOUT</button><button class="checkout" style="background:#0b160e;color:#55e981;border:1px solid #25d366" onclick="whatsappCart()">FINALIZAR PELO WHATSAPP</button>
+</aside></div>
+
+<div class="modal" id="checkoutModal"><div class="modalBox"><button class="close" onclick="closeCheckout()">×</button><h2>Finalizar pedido</h2><p style="color:#aaa">Preencha seus dados. O pedido será preparado para confirmação.</p>
+<div class="form"><input id="name" placeholder="Nome completo"><div class="two"><input id="cpf" placeholder="CPF"><input id="phone" placeholder="Telefone"></div><input id="cep" placeholder="CEP"><div class="two"><input id="address" placeholder="Endereço"><input id="number" placeholder="Número"></div><div class="two"><input id="city" placeholder="Cidade"><input id="state" placeholder="UF"></div><select id="payment"><option>Pix</option><option>Cartão de crédito</option><option>Cartão de débito</option><option>Boleto</option></select><textarea id="note" rows="3" placeholder="Observações"></textarea><button class="checkout" onclick="sendOrder()">ENVIAR PEDIDO PELO WHATSAPP</button></div></div></div>
+<div class="toast" id="toast"></div>
+
+<footer><div><div class="footLogo">MeuCelular.com</div><p>Qualidade, segurança e atendimento para sua compra de celulares e acessórios.</p></div><div><h4>INSTITUCIONAL</h4>Quem somos<br>Política de privacidade<br>Trocas e devoluções<br>Garantia</div><div><h4>AJUDA</h4>Como comprar<br>Formas de pagamento<br>Prazo de entrega<br>Rastreamento</div><div><h4>ATENDIMENTO</h4><p style="color:#55e981">WhatsApp: (11) 98955-7795</p><p>Seg–Sáb: 09h às 18h</p></div><div><h4>FORMAS DE PAGAMENTO</h4>VISA • Mastercard • Elo<br>Pix • Boleto</div></footer>
+
+<script>
+const products=[{"id": "apple-16pm", "brand": "Apple", "name": "iPhone 16 Pro Max", "storage": "256 GB", "ram": "8 GB", "price": 8999, "color": "Titânio Deserto", "camera": "48 MP + 48 MP + 12 MP", "screen": "6,9\" Super Retina XDR", "battery": "4.676 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/IPhone%2016%20Pro%20Max%20Desert%20Titanium.png"}, {"id": "apple-16", "brand": "Apple", "name": "iPhone 16", "storage": "128 GB", "ram": "6 GB", "price": 4699, "color": "Preto", "camera": "48 MP + 12 MP", "screen": "6,1\" Super Retina XDR", "battery": "3.561 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/IPhone%2016%20Black.png"}, {"id": "apple-15", "brand": "Apple", "name": "iPhone 15", "storage": "128 GB", "ram": "6 GB", "price": 4299, "color": "Verde", "camera": "48 MP + 12 MP", "screen": "6,1\" Super Retina XDR", "battery": "3.349 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/IPhone%2015%20green.png"}, {"id": "apple-14", "brand": "Apple", "name": "iPhone 14", "storage": "128 GB", "ram": "6 GB", "price": 3799, "color": "Azul", "camera": "12 MP + 12 MP", "screen": "6,1\" Super Retina XDR", "battery": "3.279 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/IPhone%2014%20blue.png"}, {"id": "samsung-s25", "brand": "Samsung", "name": "Galaxy S25", "storage": "256 GB", "ram": "12 GB", "price": 3599, "color": "Azul-marinho", "camera": "50 MP + 12 MP + 10 MP", "screen": "6,2\" Dynamic AMOLED 2X", "battery": "4.000 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Samsung_Galaxy_S25_Blue.jpg"}, {"id": "samsung-a55", "brand": "Samsung", "name": "Galaxy A55", "storage": "256 GB", "ram": "8 GB", "price": 1799, "color": "Azul-marinho", "camera": "50 MP + 12 MP + 5 MP", "screen": "6,6\" Super AMOLED", "battery": "5.000 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Samsung_Galaxy_A55_5G.png"}, {"id": "samsung-s24", "brand": "Samsung", "name": "Galaxy S24", "storage": "256 GB", "ram": "8 GB", "price": 4299, "color": "Cinza", "camera": "50 MP + 12 MP + 10 MP", "screen": "6,2\" Dynamic AMOLED 2X", "battery": "4.000 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Samsung_Galaxy_S24_Gray.jpg"}, {"id": "motorola-edge60", "brand": "Motorola", "name": "Edge 60 Pro", "storage": "256 GB", "ram": "12 GB", "price": 2399, "color": "Azul", "camera": "50 MP + 50 MP + 10 MP", "screen": "6,7\" pOLED 120 Hz", "battery": "6.000 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Motorola_Edge_60_Pro.jpg"}, {"id": "motorola-g84", "brand": "Motorola", "name": "Moto G84", "storage": "256 GB", "ram": "8 GB", "price": 1299, "color": "Rosa", "camera": "50 MP + 8 MP", "screen": "6,5\" pOLED 120 Hz", "battery": "5.000 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Moto_G84.jpg"}, {"id": "xiaomi-note14", "brand": "Xiaomi", "name": "Redmi Note 14 Pro", "storage": "256 GB", "ram": "8 GB", "price": 1899, "color": "Preto", "camera": "200 MP + 8 MP + 2 MP", "screen": "6,67\" AMOLED 120 Hz", "battery": "5.500 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Redmi_Note_14_Pro_5G_Black.jpg"}, {"id": "xiaomi-note13", "brand": "Xiaomi", "name": "Redmi Note 13", "storage": "256 GB", "ram": "8 GB", "price": 1199, "color": "Azul", "camera": "108 MP + 8 MP + 2 MP", "screen": "6,67\" AMOLED 120 Hz", "battery": "5.000 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Redmi_Note_13_5G_Black.jpg"}, {"id": "poco-x7", "brand": "POCO", "name": "POCO X7 Pro", "storage": "256 GB", "ram": "12 GB", "price": 2099, "color": "Amarelo", "camera": "50 MP + 8 MP", "screen": "6,67\" AMOLED 120 Hz", "battery": "6.000 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Poco_X7_Pro_Yellow.jpg"}, {"id": "google-pixel8", "brand": "Google", "name": "Pixel 8", "storage": "128 GB", "ram": "8 GB", "price": 3299, "color": "Obsidiana", "camera": "50 MP + 12 MP", "screen": "6,2\" OLED 120 Hz", "battery": "4.575 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Pixel_8_Obsidian.jpg"}, {"id": "oneplus-12", "brand": "OnePlus", "name": "OnePlus 12", "storage": "256 GB", "ram": "12 GB", "price": 4199, "color": "Verde", "camera": "50 MP + 64 MP + 48 MP", "screen": "6,82\" AMOLED 120 Hz", "battery": "5.400 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/OnePlus_12_Green.jpg"}, {"id": "asus-zenfone11", "brand": "ASUS", "name": "Zenfone 11 Ultra", "storage": "256 GB", "ram": "12 GB", "price": 3499, "color": "Azul", "camera": "50 MP + 32 MP + 13 MP", "screen": "6,78\" AMOLED 144 Hz", "battery": "5.500 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Asus_Zenfone_11_Ultra.jpg"}, {"id": "sony-xperia1", "brand": "Sony", "name": "Xperia 1 VI", "storage": "256 GB", "ram": "12 GB", "price": 6299, "color": "Preto", "camera": "48 MP + 12 MP + 12 MP", "screen": "6,5\" OLED 120 Hz", "battery": "5.000 mAh", "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sony_Xperia_1_VI.jpg"}];
+const fallback='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><rect width="500" height="500" fill="#080808"/><rect x="150" y="55" width="200" height="390" rx="32" fill="#222" stroke="#ffc400" stroke-width="8"/><text x="250" y="255" text-anchor="middle" fill="#ffc400" font-family="Arial" font-size="24" font-weight="700">MEU CELULAR</text></svg>');
+let cart=JSON.parse(localStorage.getItem('meuCelularCart')||'[]');
+function money(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}
+function save(){localStorage.setItem('meuCelularCart',JSON.stringify(cart)); updateCartCount()}
+function updateCartCount(){document.getElementById('cartCount').textContent=cart.reduce((s,x)=>s+x.qty,0)}
+function setBrand(b){document.querySelectorAll('input[name=brand]').forEach(x=>x.checked=x.value===b);render()}
+function getBrand(){return document.querySelector('input[name=brand]:checked')?.value||'Todos'}
+function getPrice(){return document.querySelector('input[name=price]:checked')?.value||'all'}
+function render(){
+ let list=products.filter(p=>getBrand()==='Todos'||p.brand===getBrand());
+ const q=document.getElementById('search').value.toLowerCase().trim();
+ if(q) list=list.filter(p=>(p.name+' '+p.brand+' '+p.storage).toLowerCase().includes(q));
+ const pr=getPrice();
+ if(pr==='1500') list=list.filter(p=>p.price<=1500);
+ if(pr==='2500') list=list.filter(p=>p.price>1500&&p.price<=2500);
+ if(pr==='4000') list=list.filter(p=>p.price>2500&&p.price<=4000);
+ if(pr==='6000') list=list.filter(p=>p.price>4000&&p.price<=6000);
+ if(pr==='6001') list=list.filter(p=>p.price>6000);
+ const s=document.getElementById('sort').value;
+ if(s==='low') list.sort((a,b)=>a.price-b.price); if(s==='high') list.sort((a,b)=>b.price-a.price); if(s==='az') list.sort((a,b)=>a.name.localeCompare(b.name));
+ document.getElementById('count').textContent=list.length+' produtos encontrados';
+ document.getElementById('grid').innerHTML=list.map(p=>`<article class="product"><img src="${p.image}" alt="${p.name}" onerror="this.onerror=null;this.src=fallback"><div class="brandName">${p.brand}</div><h3>${p.name} ${
+p.storage}</h3><div class="spec">RAM: ${p.ram}<br>${p.screen}<br> Câmeras: ${p.camera}<br>Bateria: ${p.battery}<br>Cor: ${p.color}</div><div class="price">${money(p.price)}</div><div class="install">12x de ${money(p.price/12)} sem juros*</div><div class="actions"><button class="buy" onclick="add('${p.id}')">🛒 COMPRAR</button><button class="wa" onclick="whatsappProduct('${p.id}')">WhatsApp</button></div></article>`).join('');
+}
+function add(id){const p=products.find(x=>x.id===id);const x=cart.find(x=>x.id===id);if(x)x.qty++;else cart.push({id,qty:1});save();toast(p.name+' adicionado ao carrinho');}
+function openCart(){renderCart();document.getElementById('cartOverlay').classList.add('open')}
+function closeCart(){document.getElementById('cartOverlay').classList.remove('open')}
+function renderCart(){
+ const box=document.getElementById('cartItems'); let total=0;
+ if(!cart.length){box.innerHTML='<p style="color:#aaa">Seu carrinho está vazio.</p>';document.getElementById('cartTotal').textContent='';return}
+ box.innerHTML=cart.map(x=>{const p=products.find(p=>p.id===x.id);total+=p.price*x.qty;return `<div class="cartItem"><img src="${p.image}" onerror="this.onerror=null;this.src=fallback"><div><b>${p.name}</b><br><small>${p.storage} • ${money(p.price)}</small><div class="qty"><button onclick="change('${x.id}',-1)">−</button> ${x.qty} <button onclick="change('${x.id}',1)">+</button></div></div><b>${money(p.price*x.qty)}</b></div>`}).join('');
+ document.getElementById('cartTotal').textContent='Total: '+money(total);
+}
+function change(id,d){const x=cart.find(x=>x.id===id);x.qty+=d;if(x.qty<=0)cart=cart.filter(y=>y.id!==id);save();renderCart()}
+function openCheckout(){if(!cart.length)return toast('Adicione um produto ao carrinho primeiro.');document.getElementById('checkoutModal').classList.add('open')}
+function closeCheckout(){document.getElementById('checkoutModal').classList.remove('open')}
+function orderText(){
+ let lines=cart.map(x=>{const p=products.find(p=>p.id===x.id);return `• ${x.qty}x ${p.name} ${p.storage} — ${money(p.price*x.qty)}`}).join('%0A');
+ let total=cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0);
+ return `Olá, Meu Celular! Quero fazer um pedido:%0A${lines}%0A%0ATotal: ${money(total)}`;
+}
+function whatsappCart(){window.open('https://wa.me/5511989557795?text='+orderText(),'_blank')}
+function whatsappProduct(id){const p=products.find(x=>x.id===id);window.open('https://wa.me/5511989557795?text='+encodeURIComponent(`Olá, Meu Celular! Tenho interesse no ${p.name} ${p.storage} por ${money(p.price)}.`),'_blank')}
+function sendOrder(){
+ const name=document.getElementById('name').value.trim(), cep=document.getElementById('cep').value.trim();
+ if(!name||!cep)return toast('Preencha pelo menos nome e CEP.');
+ let extra=`%0A%0ADados do cliente:%0ANome: ${encodeURIComponent(name)}%0ACPF: ${encodeURIComponent(document.getElementById('cpf').value)}%0ATelefone: ${encodeURIComponent(document.getElementById('phone').value)}%0ACEP: ${encodeURIComponent(cep)}%0AEndereço: ${encodeURIComponent(document.getElementById('address').value+' '+document.getElementById('number').value)}%0ACidade/UF: ${encodeURIComponent(document.getElementById('city').value+' / '+document.getElementById('state').value)}%0APagamento: ${encodeURIComponent(document.getElementById('payment').value)}`;
+ window.open('https://wa.me/5511989557795?text='+orderText()+extra,'_blank'); closeCheckout();
+}
+function toast(t){const x=document.getElementById('toast');x.textContent=t;x.style.display='block';setTimeout(()=>x.style.display='none',2200)}
+updateCartCount();render();
+</script>
+</body></html>
